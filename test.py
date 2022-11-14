@@ -37,7 +37,21 @@ def invr():
     return(map(int,input().split()))
 
 def solve():    
-    pass
+    # eof input int b,p,m
+    while True:
+        try:
+            b= inp()
+            p=inp()
+            m=inp()
+            print(b**p%m)
+        except:
+            break
+        
+
+
+
+
+
 
 
             
