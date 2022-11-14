@@ -2,3 +2,4 @@ CP.code-workspace
 /.vscode
 tempCodeRunnerFile.cpp
 *.exe
+.gitignore
