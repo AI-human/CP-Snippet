@@ -60,8 +60,24 @@ bool comp(double a, double b)
 
 void solve()
 {
-    stack<int> st;
-    st.
+    ll n, m ;
+    while(1){
+        cin >> n >> m;
+        if(n==0 && m==0) break;
+        ll cnt = 0;
+        vll a;
+        fr(n){
+            ll x;cin>>x;
+            a.pb(x);
+        }
+        fr(m){
+            ll x;cin>>x;
+            if(binary_search(all(a),x)){
+                cnt++;
+            }
+        }
+        cout<<cnt<<endl; 
+    }
 }
 
 // cerr<<"time taken : "<<(float)clock()/CLOCKS_PER_SEC<<" secs"<<endl;

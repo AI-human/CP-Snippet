@@ -87,14 +87,7 @@ int main()
     // #endif
 }
 
-// list of stl 
-/*
-    vector<int> a={1,1,3};
-    count(all(a),1); // return 2; count 1 how many times in vector a;
-    
-    a.resize(distance(a.begin(),unique(all(a))));// set only unique element;
-    
-*/
+
 
 
 
@@ -167,12 +160,12 @@ int main()
         cout<<it->first<<' '<<it->second<<'\n';
     }
 
-// str subString(string s, int n)
-// {
-//     for (int i = 0; i < n; i++)
-//         for (int len = 1; len <= n - i; len++)
-//             cout<< s.substr(i, len) << endl;
-// }
+str subString(string s, int n)
+{
+    for (int i = 0; i < n; i++)
+        for (int len = 1; len <= n - i; len++)
+            cout<< s.substr(i, len) << endl;
+}
 
 
 bitset<s.size()-1>(x); for binary repesentation !

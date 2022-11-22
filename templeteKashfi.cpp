@@ -76,12 +76,30 @@ void countFreq(ll arr[], ll n)
         cout << x.first << " " << x.second << endl;
 }
 
+// Multi field Sort 
+   
+// best ds is for this is struct
+// struct can be inside of
+struct Std{
+    int marks,roll;
+} 
+bool comp(const Std &a, const Std &b){
+    if(a.marks == b.marks) return a.roll <b.roll;
+    return a.marks>b.marks;
+}
+
 // String
 string subString(string s, int n)
 {
     for (int i = 0; i < n; i++)
         for (int len = 1; len <= n - i; len++)
             cout << s.substr(i, len) << endl;
+}
+int isSubstr(str s1, str s2)
+{
+    if (s2.find(s1) != str::npos)// nops means endof string just like set
+        return s2.find(s1);
+    return -1;
 }
 
 // Queue
@@ -103,6 +121,65 @@ bool exist(queue<int> q, int x)
     }
     return false;
 }
+
+// Binary Search
+
+// let's not think about r at all;
+//  while (ok(r)) r <<= 1;
+
+// a<<b =    a* 2^b;
+// a>>b = a/ 2^b;
+
+/*How many number between given range*/
+// low = lower_bound(a.begin(),a.end(),x[i]);
+// upp = upper_bound(a.begin(),a.end(),y[i]);
+// cout<<(upp-a.begin())-(low-a.begin())<<' ';
+        // int l= lower_bound(all(a),b)-a.begin();
+        // bool f = binary_search(all(a),b);
+
+int low_up_bound(int n,int a[],int x){
+    int l=-1,r=n;
+    while(r>l+1){
+        int mid = (l+r)/2;
+        if(x<=a[mid]) // x<=a[mid] means lower, x<a[mid] means upper
+           return r=mid;
+        else
+            return l=mid;
+    }
+}
+
+int bin_search(int n,int a[],int x){
+    int l,u;
+    l=0,u= n-1;
+    while(l<=u){
+        int mid = (l+u)/2;
+        if(x==a[mid]){
+            return mid;
+        }
+        else if(x<a[mid]){
+            u = mid - 1;
+        }
+        else {
+            l = mid + 1;
+        }
+    }
+}
+
+// binary search for fraction
+
+double x;
+cin>>x;
+double l=0,r=x;
+for(int i=0;i<100;i++){ // atleast remember this
+    double m=(l+r)/2;
+    if(m*m>x) r=m;
+    else l=m;
+}
+
+
+
+
+
 //
 /* programming vocabulary
 
@@ -129,6 +206,12 @@ bool exist(queue<int> q, int x)
 /* map O(logn)
 
     map<string , vector<int>>
+
+    // map erase
+    auto it = mp.find(name);
+    if(it!=mp.end()){
+        mp.erase(it);           
+    }
 
 */
 
@@ -170,46 +253,7 @@ bool exist(queue<int> q, int x)
     pop = Dequeue
 */
 
-// Binary Search
 
-// let's not think about r at all;
-//  while (ok(r)) r <<= 1;
-
-// a<<b =    a* 2^b;
-// a>>b = a/ 2^b;
-
-/*How many number between given range*/
-// low = lower_bound(a.begin(),a.end(),x[i]);
-// upp = upper_bound(a.begin(),a.end(),y[i]);
-// cout<<(upp-a.begin())-(low-a.begin())<<' ';
-
-// int low_up_bound(int n,int a[],int x){
-//     int l=-1,r=n;
-//     while(r>l+1){
-//         int mid = (l+r)/2;
-//         if(x<=a[mid]) // x<=a[mid] means lower, x<a[mid] means upper
-//            return r=mid;
-//         else
-//             return l=mid;
-//     }
-// }
-
-// int bin_search(int n,int a[],int x){
-//     int l,u;
-//     l=0,u= n-1;
-//     while(l<=u){
-//         int mid = (l+u)/2;
-//         if(x==a[mid]){
-//             return mid;
-//         }
-//         else if(x<a[mid]){
-//             u = mid - 1;
-//         }
-//         else {
-//             l = mid + 1;
-//         }
-//     }
-// }
 
 // sort vector pair second element
 //     sort(a.begin(),a.end(),[](auto &left, auto &right) {
