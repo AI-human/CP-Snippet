@@ -7,14 +7,54 @@ void allperm(vector<int> a, int n)
 {
     do
     {
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++)
+        {
             cout << a[i] << " ";
         }
         cout << endl;
     } while (next_permutation(a.begin(), a.end()));
 }
 
-// Nunber theory
+// Number theory
+
+ll power(ll a, ll n) // Binary Exponentiation
+{
+    ll res = 1;
+    while (n)
+    {
+        if (n % 2 != 0)
+        {
+            res *= a;
+            n--;
+        }
+        else
+        {
+            a *= a;
+            n /= 2;
+        }
+    }
+    return res;
+}
+
+int power(int a, int n, int p) // Moduler Exponentiation
+{
+    int res = 1;
+    while (n)
+    {
+        if (n % 2 != 0)
+        {
+            res = (res * a) % p;
+            n--;
+        }
+        else
+        {
+            a = (a * a) % p;
+            n /= 2;
+        }
+    }
+    return res;
+}
+
 bool isPrime(int n)
 { // O(sqrt(n))
     if (n == 1)
@@ -27,37 +67,65 @@ bool isPrime(int n)
         {
             return false;
         }
-        return true;
     }
+    return true;
 }
 
-bool coprime(long long a, long long b)
+bool coprime(long long a, long long b) // both factor is 1.
 {
     if (__gcd(a, b) == 1)
         return true;
-
-    else
-        return false;
+    return false;
 }
 
-void sieve()
-{
-    vector<int> is_prime(1e7);
-    ll N = 1e8;
-    for (int i = 1; i <= N; i++)
+void sieve(int n)
+{ //   O(nlog(n))
+    int Max = 1e7;
+    vector<bool> prime(Max, 1);
+    prime[0] = prime[1] = false;
+    for (int i = 2; i * i <= Max; i++)
     {
-        is_prime[i] = 1;
-    }
-    is_prime[0] = is_prime[1] = 0;
-    for (int i = 2; i * i <= N; i++)
-    {
-        if (is_prime[i])
+        if (prime[i])
         {
-            for (int j = i * i; j <= N; j += i)
+            for (int j = i * i; j <= Max; j += i)
             {
-                is_prime[j] = 0;
+                prime[j] = false;
             }
         }
+    }
+    for (int i = 0; i < n + 1; i++)
+    { // for printing 0..n number
+        if (prime[i])
+        {
+            cout << i << ' ';
+        }
+    }
+}
+
+// Function to find the prime factorization of a given number
+void primeFactorization(int n)
+{ // O(sqrt(N))
+    // Divide by 2 as long as the number is divisible by 2
+    while (n % 2 == 0)
+    {
+        cout << 2 << " ";
+        n /= 2;
+    }
+
+    // Divide by the rest of the prime numbers (starting from 3)
+    for (int i = 3; i * i <= n; i += 2)
+    {
+        while (n % i == 0)
+        {
+            cout << i << " ";
+            n /= i;
+        }
+    }
+
+    // If the number is still greater than 2, it must be a prime itself
+    if (n > 2)
+    {
+        cout << n << " ";
     }
 }
 // Array Related
@@ -76,16 +144,19 @@ void countFreq(ll arr[], ll n)
         cout << x.first << " " << x.second << endl;
 }
 
-// Multi field Sort 
-   
+// Multi field Sort
+
 // best ds is for this is struct
 // struct can be inside of
-struct Std{
-    int marks,roll;
-} 
-bool comp(const Std &a, const Std &b){
-    if(a.marks == b.marks) return a.roll <b.roll;
-    return a.marks>b.marks;
+struct Std
+{
+    int marks, roll;
+};
+bool comp(const Std &a, const Std &b)
+{
+    if (a.marks == b.marks)
+        return a.roll < b.roll;
+    return a.marks > b.marks;
 }
 
 // String
@@ -97,7 +168,7 @@ string subString(string s, int n)
 }
 int isSubstr(str s1, str s2)
 {
-    if (s2.find(s1) != str::npos)// nops means endof string just like set
+    if (s2.find(s1) != str::npos) // nops means endof string just like set
         return s2.find(s1);
     return -1;
 }
@@ -134,32 +205,39 @@ bool exist(queue<int> q, int x)
 // low = lower_bound(a.begin(),a.end(),x[i]);
 // upp = upper_bound(a.begin(),a.end(),y[i]);
 // cout<<(upp-a.begin())-(low-a.begin())<<' ';
-        // int l= lower_bound(all(a),b)-a.begin();
-        // bool f = binary_search(all(a),b);
+// int l= lower_bound(all(a),b)-a.begin();
+// bool f = binary_search(all(a),b);
 
-int low_up_bound(int n,int a[],int x){
-    int l=-1,r=n;
-    while(r>l+1){
-        int mid = (l+r)/2;
-        if(x<=a[mid]) // x<=a[mid] means lower, x<a[mid] means upper
-           return r=mid;
+int low_up_bound(int n, int a[], int x)
+{
+    int l = -1, r = n;
+    while (r > l + 1)
+    {
+        int mid = (l + r) / 2;
+        if (x <= a[mid]) // x<=a[mid] means lower, x<a[mid] means upper
+            return r = mid;
         else
-            return l=mid;
+            return l = mid;
     }
 }
 
-int bin_search(int n,int a[],int x){
-    int l,u;
-    l=0,u= n-1;
-    while(l<=u){
-        int mid = (l+u)/2;
-        if(x==a[mid]){
+int bin_search(int n, int a[], int x)
+{
+    int l, u;
+    l = 0, u = n - 1;
+    while (l <= u)
+    {
+        int mid = (l + u) / 2;
+        if (x == a[mid])
+        {
             return mid;
         }
-        else if(x<a[mid]){
+        else if (x < a[mid])
+        {
             u = mid - 1;
         }
-        else {
+        else
+        {
             l = mid + 1;
         }
     }
@@ -168,17 +246,16 @@ int bin_search(int n,int a[],int x){
 // binary search for fraction
 
 double x;
-cin>>x;
-double l=0,r=x;
-for(int i=0;i<100;i++){ // atleast remember this
-    double m=(l+r)/2;
-    if(m*m>x) r=m;
-    else l=m;
+cin >> x;
+double l = 0, r = x;
+for (int i = 0; i < 100; i++)
+{ // atleast remember this
+    double m = (l + r) / 2;
+    if (m * m > x)
+        r = m;
+    else
+        l = m;
 }
-
-
-
-
 
 //
 /* programming vocabulary
@@ -210,7 +287,7 @@ for(int i=0;i<100;i++){ // atleast remember this
     // map erase
     auto it = mp.find(name);
     if(it!=mp.end()){
-        mp.erase(it);           
+        mp.erase(it);
     }
 
 */
@@ -252,8 +329,6 @@ for(int i=0;i<100;i++){ // atleast remember this
     push = Enqueue
     pop = Dequeue
 */
-
-
 
 // sort vector pair second element
 //     sort(a.begin(),a.end(),[](auto &left, auto &right) {

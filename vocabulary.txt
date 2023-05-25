@@ -1,0 +1,1 @@
+parity = adjacent elements odd or even;
