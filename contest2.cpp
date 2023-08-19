@@ -45,6 +45,7 @@ using ull = unsigned long long;
 #define max3(a, b, c) max(c, max(a, b))
 #define max4(a, b, c, d) max(d, max(c, max(a, b)))
 #define findc(cn, abc) ((cn).find(abc) != (cn).end())
+#define fixed(n) cout << fixed << setprecision(n);
 
 #define low(s) (transform(s.begin(), s.end(), s.begin(), ::tolower))
 #define Ceil(x, y) ((x + y - 1) / y)
@@ -83,69 +84,29 @@ bool comp(double a, double b)
 }
 
 
-void adjmatrix(){
-    int n,m;cin>>n>>m;  // n = how many vertices, m = how many edges
-    vector<vector<int>> a(n+5, vector<int> (n+5,0));
-    for(int i=1;i<=(m);i++){
-        int x,y;
-        cin>>x>>y;
-        a[x][y]=1;
-        a[y][x]=1;
-    }
-    for(int i=1;i<=n;i++){
-        for(int j=1;j<=n;j++){
-            cout<<a[i][j]<<' ';
-        }
-        cout<<endl;
-    }
-}
-void adjlist(){
-    int n,m;cin>>n>>m;
-    vector<int> edge[n+5];
-    for(int i=0;i<m;i++){
-        int x,y;
-        cin>>x>>y;
-        edge[x].push_back(y);
-        edge[y].push_back(x);
-    }
-    for(int i=1;i<=n;i++){
-        cout<<i<<'-';
-        for(int j=0;j<sz(edge[i]);j++){
-            cout<<edge[i][j]<<' ';
-        }
-        cout<<endl;
-    }
-
+ll fib(int n){
+    if(n==1)
+        return 0;
+    else if( n==2)
+        return 1;
+    return fib(n-1)+fib(n-2);
 }
 
-
-void solve()
-{
-    // adjlist();
+void solve(){
     int n;cin>>n;
-    vector<vector<int>> b(n,vector<int>(n,0));// 2d vector longcut
+    
 
-    vi a[n+1]; //2D vector shortcut and its input and traverse;
-    for(int i=0;i<n;i++){   
-        for(int j=0;j<n;j++){
-            int x;cin>>x;
-            a[i].pb(x);
-        }
-    }
-    for(int i=0;i<n;i++){   
-        for(int j=0;j<n;j++){
-            cout<<a[i][j]<<' ';
-        }
-        cout<<endl;
-    }
-
+    
 }
+
+
+
 
 int main()
 {
     boost;
     int t = 1;
-    // cin >> t;
+    //cin >> t;
     while (t--)
     {
         solve();

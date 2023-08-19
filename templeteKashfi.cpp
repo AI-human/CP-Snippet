@@ -2,7 +2,47 @@
 using ll = long long;
 using namespace std;
 
+
+/**/
+
+/*  list of stl
+    --------------
+
+    1.  counting 
+    vector<int> a={1,1,3};
+    count(all(a),1); // return 2; count 1 how many times in vector a;
+    ________________________________________________________________________
+    2.unique ness 
+    sort(all(a));
+    int usize = unique(all(a)) - a.begin();
+    ..  
+    sort(all(vect));
+    vect.erase(unique(all(vect)), vect.end());  
+    ..
+    another not sure //
+    a.resize(distance(a.begin(),unique(all(a))));// set only unique element;
+    ________________________________________________________________________
+    3. int to string 
+    int a = 123;
+    string s = to_string(a);
+    ________________________________________________________________________
+    4. string to int 
+    int b = stoi(s);
+    ________________________________________________________________________
+
+    type cast 
+    for long long 
+    int x;
+    long long c = 1ll * x * x;
+
+    for double 
+    int x;
+    double  = 1.0 * x/5;
+
+
+*/
 // Permutation
+
 void allperm(vector<int> a, int n)
 {
     do
@@ -15,134 +55,21 @@ void allperm(vector<int> a, int n)
     } while (next_permutation(a.begin(), a.end()));
 }
 
-// Number theory
-
-ll power(ll a, ll n) // Binary Exponentiation
-{
-    ll res = 1;
-    while (n)
-    {
-        if (n % 2 != 0)
-        {
-            res *= a;
-            n--;
-        }
-        else
-        {
-            a *= a;
-            n /= 2;
-        }
-    }
-    return res;
-}
-
-int power(int a, int n, int p) // Moduler Exponentiation
-{
-    int res = 1;
-    while (n)
-    {
-        if (n % 2 != 0)
-        {
-            res = (res * a) % p;
-            n--;
-        }
-        else
-        {
-            a = (a * a) % p;
-            n /= 2;
-        }
-    }
-    return res;
-}
-
-bool isPrime(int n)
-{ // O(sqrt(n))
-    if (n == 1)
-    {
-        return false;
-    }
-    for (int i = 2; i * i <= n; i++)
-    {
-        if (n % i == 0)
-        {
-            return false;
-        }
-    }
-    return true;
-}
-
-bool coprime(long long a, long long b) // both factor is 1.
-{
-    if (__gcd(a, b) == 1)
-        return true;
-    return false;
-}
-
-void sieve(int n)
-{ //   O(nlog(n))
-    int Max = 1e7;
-    vector<bool> prime(Max, 1);
-    prime[0] = prime[1] = false;
-    for (int i = 2; i * i <= Max; i++)
-    {
-        if (prime[i])
-        {
-            for (int j = i * i; j <= Max; j += i)
-            {
-                prime[j] = false;
-            }
-        }
-    }
-    for (int i = 0; i < n + 1; i++)
-    { // for printing 0..n number
-        if (prime[i])
-        {
-            cout << i << ' ';
-        }
-    }
-}
-
-// Function to find the prime factorization of a given number
-void primeFactorization(int n)
-{ // O(sqrt(N))
-    // Divide by 2 as long as the number is divisible by 2
-    while (n % 2 == 0)
-    {
-        cout << 2 << " ";
-        n /= 2;
-    }
-
-    // Divide by the rest of the prime numbers (starting from 3)
-    for (int i = 3; i * i <= n; i += 2)
-    {
-        while (n % i == 0)
-        {
-            cout << i << " ";
-            n /= i;
-        }
-    }
-
-    // If the number is still greater than 2, it must be a prime itself
-    if (n > 2)
-    {
-        cout << n << " ";
-    }
-}
 // Array Related
-void countFreq(ll arr[], ll n)
-{
-    int n;
-    cin >> n;
-    for (int i = 0; i < n; i++)
-    {
-        cin >> arr[i];
-    }
-    unordered_map<ll, ll> frq;
-    for (ll i = 0; i < n; i++)
-        frq[arr[i]]++;
-    for (auto x : frq)
-        cout << x.first << " " << x.second << endl;
-}
+// void countFreq(ll arr[], ll n)
+// {
+//     int n;
+//     cin >> n;
+//     for (int i = 0; i < n; i++)
+//     {
+//         cin >> arr[i];
+//     }
+//     unordered_map<ll, ll> frq;
+//     for (ll i = 0; i < n; i++)
+//         frq[arr[i]]++;
+//     for (auto x : frq)
+//         cout << x.first << " " << x.second << endl;
+// }
 
 // Multi field Sort
 
@@ -166,9 +93,9 @@ string subString(string s, int n)
         for (int len = 1; len <= n - i; len++)
             cout << s.substr(i, len) << endl;
 }
-int isSubstr(str s1, str s2)
+int isSubstr(string s1, string s2)
 {
-    if (s2.find(s1) != str::npos) // nops means endof string just like set
+    if (s2.find(s1) != string::npos) // nops means endof string just like set
         return s2.find(s1);
     return -1;
 }
@@ -193,10 +120,40 @@ bool exist(queue<int> q, int x)
     return false;
 }
 
+void twoDvector(){
+    int n;cin>>n;
+    vector<vector<int>> b(n,vector<int>(n,0));// 2d vector longcut
+
+    vector<int> a[n+1]; //2D vector shortcut and its input and traverse;
+    for(int i=0;i<n;i++){   
+        for(int j=0;j<n;j++){
+            int x;cin>>x;
+            a[i].push_back(x);
+        }
+    }
+    for(int i=0;i<n;i++){   
+        for(int j=0;j<n;j++){
+            cout<<a[i][j]<<' ';
+        }
+        cout<<endl;
+    }
+}
+
+// maximum subarray
+int maxsubarrsum(vector<int> &a){
+    int best = 0, sum = 0;
+    for(int i = 0; i < a.size(); i++) {
+    sum = max(a[i],sum+a[i]);
+    best = max(best,sum);
+    }
+    cout << best << "\n";
+}
+
+
 // Binary Search
 
 // let's not think about r at all;
-//  while (ok(r)) r <<= 1;
+//  while (!ok(r)) r <<= 1;
 
 // a<<b =    a* 2^b;
 // a>>b = a/ 2^b;
@@ -221,10 +178,8 @@ int low_up_bound(int n, int a[], int x)
     }
 }
 
-int bin_search(int n, int a[], int x)
+int bin_search(vector<int> &a,int x,int l,int u)
 {
-    int l, u;
-    l = 0, u = n - 1;
     while (l <= u)
     {
         int mid = (l + u) / 2;
@@ -244,7 +199,7 @@ int bin_search(int n, int a[], int x)
 }
 
 // binary search for fraction
-
+/*
 double x;
 cin >> x;
 double l = 0, r = x;
@@ -256,21 +211,14 @@ for (int i = 0; i < 100; i++)
     else
         l = m;
 }
-
+*/
 //
 /* programming vocabulary
 
 
 */
 
-/*  list of stl
 
-    vector<int> a={1,1,3};
-    count(all(a),1); // return 2; count 1 how many times in vector a;
-
-    a.resize(distance(a.begin(),unique(all(a))));// set only unique element;
-
-*/
 
 /* Dequeue FIFOLIFO
  */

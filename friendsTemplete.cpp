@@ -411,3 +411,124 @@ int main()
         solve();
     }
 }
+
+#include<bits/stdc++.h>
+using namespace std;
+///POLICY BASED DATA STRUCTURE..
+///order_of_key return number of element which are strictly greater/smaller than x..
+///find_by_order return ans iterator corresponding to the xth position of the set..
+#include<ext/pb_ds/assoc_container.hpp>
+#include<ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+#define ordered_set tree<int, null_type,less_equal<int>, rb_tree_tag, tree_order_statistics_node_update>
+#define faster ios_base::sync_with_stdio(false);cin.tie(NULL)
+#define pb push_back
+#define all(x) (x).begin(),(x).end()
+#define allr(x) (x).rbegin(),(x).rend()
+#define sz(n) (int)(n).size()
+#define eps 1e-10
+#define YES cout << "YES" << endl
+#define NO cout << "NO" << endl
+#define Yes cout << "Yes" << endl;
+#define No cout << "No" << endl;
+#define ye s cout << "yes" << endl;
+#define no cout << "no" << endl;
+#define min3(a, b, c) min(c, min(a, b))
+#define min4(a, b, c, d) min(d, min(c, min(a, b)))
+#define max3(a, b, c) max(c, max(a, b))
+#define max4(a, b, c, d) max(d, max(c, max(a, b)))
+#define pi 2*acos(0)  /// acos(-1.0)
+#define findc(cn, abc)  ((cn).find(abc) != (cn).end())
+#define c(x) cin >> x;
+#define vi vector<int>
+#define f(n) for(int i=0;i<(n);i++)
+#define deg_to_rad(x) ((x)*((2*acos(0))/180.0))
+#define rad_to_deg(x) ((x)*(180.0/(2*acos(0))))
+#define out(x) cout << (x) << endl;
+#define sp << " " <<
+#define fi first
+#define sc second
+#define mp make_pair
+#define __lcm(a,b) (a/__gcd(a,b)*b)
+typedef long long ll;
+const ll INF = 0x3f3f3f3f3f3f3f3f;
+const int M = 1e9 + 7;
+const int N = 200020;
+#define cost (ll)1000000000000
+typedef unsigned long long ull;
+typedef vector<ll> vl;
+//bool vis[2010];
+//vector<int>edge[2010];
+ll n,m,i,k,h;
+bool check(ll x,ll y)
+{
+    return (x>=0 && y>=0 && x<n && y<m);
+}
+ll dis(ll x1,ll y1,ll x2,ll y2)
+{
+    return (abs(x1-x2)+abs(y1-y2));
+}
+bool cmp(pair<ll,ll>p1,pair<ll,ll>p2)
+{
+    return p1.fi<p2.fi;
+}
+vector<ll>prime_divisor[N];
+//ll expo(ll a, ll b, ll mod) {ll res = 1; while (b > 0) {if (b & 1)res = (res * a) % mod; a = (a * a) % mod; b = b >> 1;} return res;}
+//ll mminvprime(ll a, ll b) {return expo(a, b - 2, b);}
+//ll mod_add(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a + b) % m) + m) % m;}
+//ll mod_mul(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a * b) % m) + m) % m;}
+//ll mod_sub(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) % m;}
+//ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprime(b, m), m) + m) % m;} //only for prime m
+//ll combination(ll n, ll r, ll m, ll *fact, ll *ifact) {ll val1 = fact[n]; ll val2 = ifact[n - r]; ll val3 = ifact[r]; return (((val1 * val2) % m) * val3) % m;}
+//ll nCrMod(ll n,ll r)
+//{
+//    if(r==0) return 1;
+//    if(r>n) return 0;
+//    return mod_div(fact[n],((fact[r]*fact[n-r])%mod),mod);
+//}
+struct prob
+{
+    ll idx,x1,y1;
+};
+bool cp(prob a,prob b)
+{
+    if((1LL*a.x1*b.y1)==(1LL*b.x1*a.y1))
+    {
+        return a.idx<b.idx;
+    }
+    return 1LL*a.x1*b.y1>1LL*b.x1*a.y1;
+}
+
+int main()
+{
+    faster;
+    //srand(time(NULL));
+//    freopen("input.txt", "rt", stdin);
+//    freopen("output.txt", "wt", stdout);
+    ll t,i,j,q,x,g,z,d,u,v,p,y,l,r,mod=1e9+7,mx,mn,mx1,mn1,cnt1,cnt;
+    t=1;
+    //cin>>t;
+    while(t--)
+    {
+        //string s2,s3,s;
+        string s[1000],s1[1000];
+        cin>>n;
+        vector<prob>v;
+        for(i=0;i<n;i++)
+        {
+            cin>>x>>y;
+            v.pb({i+1,x,y});
+        }
+         sort(all(v),cp);
+         //sort(all(v),cp1);
+         for(i=0;i<n;i++)
+         {
+             cout<<v[i].idx<<" ";
+         }
+         cout<<endl;
+
+    }
+    return 0;
+}
+
+

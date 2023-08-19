@@ -36,22 +36,19 @@ def insr():
 def invr():
     return(map(int,input().split()))
 
+
+
 def solve():    
     # eof input int b,p,m
-    while True:
-        try:
-            b= inp()
-            p=inp()
-            m=inp()
-            print(b**p%m)
-        except:
-            break
-        
-
-
-
-
-
+    n = inp()
+    s = str(fact(n))
+    cnt=0
+    for i in range(size(s),0):
+        if(s[i]=='0'):
+            cnt+=1
+        i-=1
+    print(cnt)
+    
 
 
             
